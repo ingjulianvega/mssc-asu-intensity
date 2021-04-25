@@ -29,7 +29,7 @@ public class IntensityServiceImpl implements IntensityService {
         log.debug("get()...");
         return IntensityList
                 .builder()
-                .systemList(intensityMapper.intensityEntityListToIntensityDtoList(intensityRepository.findAll()))
+                .systemList(intensityMapper.intensityEntityListToIntensityDtoList(intensityRepository.findAllByOrderByName()))
                 .build();
     }
 

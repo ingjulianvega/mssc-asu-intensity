@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/ingjulianvega/mssc-asu-intensity.svg?style=svg)](https://circleci.com/gh/ingjulianvega/mssc-asu-intensity)
 
-# ASU evidence type management microservice
+# ASU intensity management microservice
 
 ### BOM
 
