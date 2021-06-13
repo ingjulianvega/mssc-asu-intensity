@@ -21,8 +21,8 @@ public class IntensityController implements IntensityI {
     private final IntensityService intensityService;
 
     @Override
-    public ResponseEntity<IntensityList> get() {
-        return new ResponseEntity<>(intensityService.get(), HttpStatus.OK);
+    public ResponseEntity<IntensityList> get(Boolean usingCache) {
+        return new ResponseEntity<>(intensityService.get(usingCache), HttpStatus.OK);
     }
 
     @Override

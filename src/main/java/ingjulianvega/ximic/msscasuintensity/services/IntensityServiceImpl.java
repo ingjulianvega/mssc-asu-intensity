@@ -23,9 +23,9 @@ public class IntensityServiceImpl implements IntensityService {
     private final IntensityRepository intensityRepository;
     private final IntensityMapper intensityMapper;
 
-    @Cacheable(cacheNames = "intensityListCache")
+    @Cacheable(cacheNames = "intensityListCache", condition = "#usingCache == false")
     @Override
-    public IntensityList get() {
+    public IntensityList get(Boolean usingCache) {
         log.debug("get()...");
         return IntensityList
                 .builder()

@@ -31,7 +31,7 @@ public interface IntensityI {
     @RequestMapping(value = "/",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    ResponseEntity<IntensityList> get();
+    ResponseEntity<IntensityList> get(@Parameter(in = ParameterIn.QUERY, description = "The using of cache", required = true, schema = @Schema()) Boolean usingCache);
 
     @Operation(summary = "Endpoint to get the information of a intensity given the id", description = "Returns a intensity", tags = {"intensity"})
     @ApiResponses(value = {

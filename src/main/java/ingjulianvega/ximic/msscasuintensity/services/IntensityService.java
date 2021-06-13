@@ -8,7 +8,7 @@ import ingjulianvega.ximic.msscasuintensity.web.model.IntensityList;
 import java.util.UUID;
 
 public interface IntensityService {
-    IntensityList get();
+    IntensityList get(Boolean usingCache);
 
     IntensityDto getById(UUID id);
 
