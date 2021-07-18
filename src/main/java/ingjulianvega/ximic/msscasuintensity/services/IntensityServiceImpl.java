@@ -11,6 +11,7 @@ import ingjulianvega.ximic.msscasuintensity.web.model.IntensityList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -39,7 +40,14 @@ public class IntensityServiceImpl implements IntensityService {
         log.debug("getById()...");
         return intensityMapper.intensityEntityToIntensityDto(
                 intensityRepository.findById(id)
-                        .orElseThrow(() -> new IntensityException(ErrorCodeMessages.INTENSITY_NOT_FOUND, "")));
+                        .orElseThrow(() -> IntensityException
+                                .builder()
+                                .httpStatus(HttpStatus.BAD_REQUEST)
+                                .apiCode(ErrorCodeMessages.INTENSITY_NOT_FOUND_API_CODE)
+                                .error(ErrorCodeMessages.INTENSITY_NOT_FOUND_ERROR)
+                                .message(ErrorCodeMessages.INTENSITY_NOT_FOUND_MESSAGE)
+                                .solution(ErrorCodeMessages.INTENSITY_NOT_FOUND_SOLUTION)
+                                .build()));
     }
 
     @Override
@@ -58,7 +66,14 @@ public class IntensityServiceImpl implements IntensityService {
     public void updateById(UUID id, Intensity intensity) {
         log.debug("updateById...");
         IntensityEntity evidenceEntity = intensityRepository.findById(id)
-                .orElseThrow(() -> new IntensityException(ErrorCodeMessages.INTENSITY_NOT_FOUND, ""));
+                .orElseThrow(() -> IntensityException
+                        .builder()
+                        .httpStatus(HttpStatus.BAD_REQUEST)
+                        .apiCode(ErrorCodeMessages.INTENSITY_NOT_FOUND_API_CODE)
+                        .error(ErrorCodeMessages.INTENSITY_NOT_FOUND_ERROR)
+                        .message(ErrorCodeMessages.INTENSITY_NOT_FOUND_MESSAGE)
+                        .solution(ErrorCodeMessages.INTENSITY_NOT_FOUND_SOLUTION)
+                        .build());
 
         evidenceEntity.setName(intensity.getName());
 
